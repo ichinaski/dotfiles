@@ -66,7 +66,7 @@ endif
 " diff options
 set diffopt=vertical
 
-" Tab stuff
+" Tabs
 set autoindent
 set expandtab
 set tabstop=4
