@@ -9,10 +9,6 @@ set nocompatible
 " Allow intelligent auto-indenting for each filetype
 filetype indent plugin on
 
-" Adds windows default copy/paste keybindings (Ctrl-C, Ctrl-V,...)
-"source $VIMRUNTIME/mswin.vim
-"behave mswin
-
 " Enable syntax highlighting
 syntax on
 
@@ -57,9 +53,12 @@ set hlsearch
 set spell
 set spell spelllang=en_us
 
-" Set the font
+" Set OS specifics.
 if has("win32")
     set guifont=Consolas:h12
+    " Adds windows default copy/paste keybindings (Ctrl-C, Ctrl-V,...)
+    source $VIMRUNTIME/mswin.vim
+    behave mswin
 else
     set guifont=Inconsolata\ 12
 endif
