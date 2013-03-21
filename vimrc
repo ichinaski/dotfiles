@@ -21,8 +21,17 @@ set showcmd
 " No wrap-around search
 " set nows
 
-" Remove toolbar (gvim)
-set guioptions-=T
+" gvim
+if has("gui_running")
+    set guioptions-=T
+
+    " Set the window maximized by default
+    set lines=999
+    set columns=999
+
+    " Remove highlight when pressing ESC
+    nnoremap <esc> :noh<CR><esc>
+endif
 
 " Clipboard compatibility
 set clipboard=unnamedplus
@@ -33,10 +42,6 @@ set nowritebackup
 
 " Line numbers
 set number
-
-" Set the window maximized by default
-set lines=999
-set columns=999
 
 " Color scheme
 colorscheme murphy
@@ -91,9 +96,6 @@ nnoremap <C-S-H>   :tabp<ENTER>
 nnoremap <C-S-L>   :tabn<ENTER>
 nnoremap <C-tab>   :tabn<ENTER>
 nnoremap <C-S-tab> :tabp<ENTER>
-
-" Remove highlight when pressing ESC
-nnoremap <esc> :noh<CR><esc>
 
 " New Tab
 nnoremap :t :tabe 
