@@ -1,6 +1,9 @@
+" Activate pathogen plugin
+call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
+
 " Encoding and language of the menu (gvim)
 set encoding=utf-8
-set langmenu=en_US.UTF-8
 
 " Set 'nocompatible' to ward off unexpected things that your distro might
 " have made, as well as sanely reset options when re-sourcing .vimrc
