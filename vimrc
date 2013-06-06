@@ -24,7 +24,7 @@ set showcmd
 " No wrap-around search
 " set nows
 
-" gvim
+" gvim. TODO: Move this to a separate .gvimrc config file
 if has("gui_running")
     set guioptions-=T
 
@@ -37,7 +37,11 @@ if has("gui_running")
 endif
 
 " Clipboard compatibility
-set clipboard=unnamedplus
+if has("unnamedplus")
+    set clipboard=unnamedplus
+else
+    set clipboard=unnamed
+endif
 
 " Backup stuff
 set nobackup
@@ -134,3 +138,10 @@ function MyDiff()
   endif
   silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
 endfunction
+
+" ===========
+" = Plugins =
+" ===========
+
+" GitGutter: Change sign column color, matching line number column
+highlight clear SignColumn
