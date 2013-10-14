@@ -4,3 +4,9 @@
 [submodule "bundle/git_file"]
 	path = bundle/git_file
 	url = https://github.com/vim-scripts/git-file.vim
+[submodule "bundle/vim-classpath"]
+	path = bundle/vim-classpath
+	url = git://github.com/tpope/vim-classpath.git
+[submodule "bundle/vim-fireplace"]
+	path = bundle/vim-fireplace
+	url = git://github.com/tpope/vim-fireplace.git
