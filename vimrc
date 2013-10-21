@@ -114,6 +114,10 @@ nnoremap Y y$
 vnoremap < <gv
 vnoremap > >gv
 
+" Make space execute the 'q' macro.
+" Press qq to start recording, q to stop, then [space] to execute.
+noremap <Space> @q
+
 set diffexpr=MyDiff()
 function MyDiff()
   let opt = '-a --binary '
