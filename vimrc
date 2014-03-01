@@ -179,3 +179,15 @@ command! PrettyXML call DoPrettyXML()
 
 " GitGutter: Change sign column color, matching line number column
 highlight clear SignColumn
+
+" go-vim
+" Some Linux distributions set filetype in /etc/vimrc.
+" Clear filetype flags before changing runtimepath to force Vim to reload them.
+filetype off
+filetype plugin indent off
+set runtimepath+=$GOROOT/misc/vim
+filetype plugin indent on
+syntax on
+
+" gofmt Go source files when they are saved
+" autocmd FileType go autocmd BufWritePre <buffer> Fmt
