@@ -151,6 +151,9 @@ function! DoPrettyXML()
 endfunction
 command! PrettyXML call DoPrettyXML()
 
+" Omni Completion
+set omnifunc=syntaxcomplete#Complete
+
 " ===========
 " = Plugins =
 " ===========
