@@ -5,6 +5,8 @@ call pathogen#helptags()
 " Encoding and language of the menu (gvim)
 set encoding=utf-8
 
+let mapleader=","
+
 " Set 'nocompatible' to ward off unexpected things that your distro might
 " have made, as well as sanely reset options when re-sourcing .vimrc
 set nocompatible
@@ -94,15 +96,24 @@ set confirm
 " Set the command window height to 2 lines
 set cmdheight=2
 
+" Find tags file recursively
+set tags=tags;
+
 " ============
 " = Mappings =
 " ============
 
 " tab next/previous with keys
-nnoremap <C-S-H>   :tabp<ENTER>
-nnoremap <C-S-L>   :tabn<ENTER>
-nnoremap <C-tab>   :tabn<ENTER>
-nnoremap <C-S-tab> :tabp<ENTER>
+"nnoremap <C-S-H>   :tabp<ENTER>
+"nnoremap <C-S-L>   :tabn<ENTER>
+"nnoremap <C-tab>   :tabn<ENTER>
+"nnoremap <C-S-tab> :tabp<ENTER>
+
+" Move windows with Ctrl + direction
+noremap <C-J> <C-W>j
+noremap <C-K> <C-W>k
+noremap <C-H> <C-W>h
+noremap <C-L> <C-W>l
 
 " New Tab
 nnoremap :t :tabe 
@@ -172,3 +183,19 @@ syntax on
 
 " gofmt Go source files when they are saved
 autocmd FileType go autocmd BufWritePre <buffer> Fmt
+
+" Regenerate Go tags file with gotags
+" Note: ctags-compatible tag generator for Go https://github.com/jstemmer/gotags
+" au BufWritePost *.go silent! !gotags -R . > tags &
+nnoremap <Leader>t :silent !gotags -R . > tags &<CR>
+
+" Do not split windows with godef
+let g:godef_split=0
+
+" MiniBufExpl
+nmap <F3> :MBEToggle<CR>
+noremap <C-TAB> :MBEbn<CR>
+noremap <C-S-TAB> :MBEbp<CR>
+
+" NerdTree
+nmap <F4> :NERDTreeToggle<CR>

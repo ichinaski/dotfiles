@@ -27,9 +27,10 @@ endif
 "  Public Interface:
 if !hasmapto('<Plug>Vm_toggle_sign')
   map <unique> <c-F2> <Plug>Vm_toggle_sign
-  map <silent> <unique> mm <Plug>Vm_toggle_sign 
+  " NOTE: I removed the trailing as it collided with <SPACE> mapping
+  map <silent> <unique> mm <Plug>Vm_toggle_sign
 endif
-nnoremap <silent> <script> <Plug>Vm_toggle_sign	:call Vm_toggle_sign()<cr>
+nnoremap <silent> <script> <Plug>Vm_toggle_sign :call Vm_toggle_sign()<cr>
 
 if !hasmapto('<Plug>Vm_goto_next_sign')
   map <unique> <F2> <Plug>Vm_goto_next_sign
