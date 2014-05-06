@@ -13,6 +13,7 @@ set nocompatible
 
 " Allow intelligent auto-indenting for each filetype
 filetype indent plugin on
+set smartindent
 
 " Enable syntax highlighting
 syntax on
@@ -53,7 +54,7 @@ set nowritebackup
 set number
 
 " Color scheme
-colorscheme murphy
+colorscheme desert256
 
 " no case search by default (ic), unless capital letters used
 set ignorecase
@@ -66,6 +67,10 @@ set hlsearch
 " Enable spelling
 set spell
 set spell spelllang=en_us
+
+" Hide buffers instead of closing them. This fixes a 
+" highlighting disappearing issue when closing a buffer
+set hidden
 
 " Set OS specifics.
 if has("win32")
@@ -199,3 +204,35 @@ noremap <C-S-TAB> :MBEbp<CR>
 
 " NerdTree
 nmap <F4> :NERDTreeToggle<CR>
+
+" TagBar
+nmap <F5> :TagbarToggle<CR>
+
+
+let g:tagbar_type_go = {
+    \ 'ctagstype' : 'go',
+    \ 'kinds'     : [
+        \ 'p:package',
+        \ 'i:imports:1',
+        \ 'c:constants',
+        \ 'v:variables',
+        \ 't:types',
+        \ 'n:interfaces',
+        \ 'w:fields',
+        \ 'e:embedded',
+        \ 'm:methods',
+        \ 'r:constructor',
+        \ 'f:functions'
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 't' : 'ctype',
+        \ 'n' : 'ntype'
+    \ },
+    \ 'scope2kind' : {
+        \ 'ctype' : 't',
+        \ 'ntype' : 'n'
+    \ },
+    \ 'ctagsbin'  : 'gotags',
+    \ 'ctagsargs' : '-sort -silent'
+\ }
