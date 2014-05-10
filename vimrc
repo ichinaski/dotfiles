@@ -194,8 +194,10 @@ autocmd FileType go autocmd BufWritePre <buffer> Fmt
 " au BufWritePost *.go silent! !gotags -R . > tags &
 nnoremap <Leader>t :silent !gotags -R . > tags &<CR>
 
-" Do not split windows with godef
-let g:godef_split=0
+let g:syntastic_auto_loc_list = 2 " manual open. automatic close.
+nnoremap <Leader>e :Errors<CR>
+
+let g:godef_split=0 " Do not split windows with godef
 
 " MiniBufExpl
 nmap <F3> :MBEToggle<CR>
