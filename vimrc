@@ -24,6 +24,9 @@ set wildmenu
 " Show partial commands in the last line of the screen
 set showcmd
 
+" set splitright " make vsplit put the new buffer on the right of the current buffer
+" set splitbelow " make split put the new buffer below the current buffer
+
 " No wrap-around search
 " set nows
 
@@ -66,7 +69,7 @@ set hlsearch
 
 " Enable spelling
 set spell
-set spell spelllang=en_us
+set spell spelllang=en_gb
 
 " Hide buffers instead of closing them. This fixes a 
 " highlighting disappearing issue when closing a buffer
@@ -177,27 +180,24 @@ set omnifunc=syntaxcomplete#Complete
 " GitGutter: Change sign column color, matching line number column
 highlight clear SignColumn
 
-" go-vim
-" Some Linux distributions set filetype in /etc/vimrc.
-" Clear filetype flags before changing runtimepath to force Vim to reload them.
-filetype off
-filetype plugin indent off
-set runtimepath+=$GOROOT/misc/vim
-filetype plugin indent on
-syntax on
-
-" gofmt Go source files when they are saved
-autocmd FileType go autocmd BufWritePre <buffer> Fmt
-
 " Regenerate Go tags file with gotags
 " Note: ctags-compatible tag generator for Go https://github.com/jstemmer/gotags
 " au BufWritePost *.go silent! !gotags -R . > tags &
 nnoremap <Leader>t :silent !gotags -R . > tags &<CR>
 
+let g:go_fmt_command = "goimports"
+
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+
 let g:syntastic_auto_loc_list = 2 " manual open. automatic close.
 nnoremap <Leader>e :Errors<CR>
+nnoremap <Leader>ne :lclose<CR>
 
-let g:godef_split=0 " Do not split windows with godef
+" Open the relevant Godoc for the word under the cursor with <leader>gd or open it vertically with <leader>gv
+au FileType go nmap <Leader>gd <Plug>(go-doc)
+au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
 
 " MiniBufExpl
 nmap <F3> :MBEToggle<CR>
