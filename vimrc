@@ -1,34 +1,68 @@
-" Activate pathogen plugin
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+call plug#begin('~/.vim/plugged')
 
-" Encoding and language of the menu (gvim)
-set encoding=utf-8
+Plug 'fatih/vim-go'
+Plug 'bling/vim-airline'
+Plug 'scrooloose/nerdtree'
+Plug 'majutsushi/tagbar'
+Plug 'flazz/vim-colorschemes'
+Plug 'Raimondi/delimitMate'
+Plug 'scrooloose/syntastic'
+
+" Plug 'Shougo/neocomplete.vim'
+" Plug 'Shougo/vimproc' , { 'do': 'make'}
+
+" filetype plugins
+Plug 'elzr/vim-json', {'for' : 'json'}
+Plug 'ekalinin/Dockerfile.vim', {'for' : 'Dockerfile'}
+
+call plug#end()
+
+set nocompatible              " be iMproved, required
+filetype off                  " required
+filetype plugin indent on     " required
+
+"
+" Settings
+"
+set noerrorbells                " No beeps
+set number                      " Show line numbers
+set backspace=indent,eol,start  " Makes backspace key more powerful.
+set showcmd                     " Show me what I'm typing
+set showmode                    " Show current mode.
+
+set noswapfile                  " Don't use swapfile
+set nobackup            	" Don't create annoying backup files
+set splitright                  " Split vertical windows right to the current windows
+set splitbelow                  " Split horizontal windows below to the current windows
+set encoding=utf-8              " Set default encoding to UTF-8
+set autowrite                   " Automatically save before :next, :make etc.
+set autoread                    " Automatically reread changed files without asking me anything
+set laststatus=2
+set hidden
+
+"http://stackoverflow.com/questions/20186975/vim-mac-how-to-copy-to-clipboard-without-pbcopy
+set clipboard^=unnamed
+set clipboard^=unnamedplus
+
+set noshowmatch                 " Do not show matching brackets by flickering
+set nocursorcolumn
+set noshowmode                  " We show the mode with airline or lightline
+set incsearch                   " Shows the match while typing
+set hlsearch                    " Highlight found searches
+set ignorecase                  " Search case insensitive...
+set smartcase                   " ... but not when search pattern contains upper case characters
+set wildmenu                    " Better command-line completion
 
 let mapleader=","
+" set smartindent
 
-" Set 'nocompatible' to ward off unexpected things that your distro might
-" have made, as well as sanely reset options when re-sourcing .vimrc
-set nocompatible
-
-" Allow intelligent auto-indenting for each filetype
-filetype indent plugin on
-set smartindent
+" File Type settings
+autocmd BufNewFile,BufRead *.go setlocal noet ts=4 sw=4 sts=4
+autocmd Filetype html setlocal ts=2 sts=2 sw=2
+autocmd Filetype javascript setlocal ts=4 sts=4 sw=4
 
 " Enable syntax highlighting
 syntax on
-
-" Better command-line completion
-set wildmenu
-
-" Show partial commands in the last line of the screen
-set showcmd
-
-" set splitright " make vsplit put the new buffer on the right of the current buffer
-" set splitbelow " make split put the new buffer below the current buffer
-
-" No wrap-around search
-" set nows
 
 " gvim. TODO: Move this to a separate .gvimrc config file
 if has("gui_running")
@@ -38,68 +72,25 @@ if has("gui_running")
     set lines=999
     set columns=999
 
-    " Remove highlight when pressing ESC
-    nnoremap <esc> :noh<CR><esc>
 endif
-
-" Clipboard compatibility
-if has("unnamedplus")
-    set clipboard=unnamedplus
-else
-    set clipboard=unnamed
-endif
-
-" Backup stuff
-set nobackup
-set nowritebackup
-
-" Line numbers
-set number
 
 " Color scheme
-colorscheme desert256
+" colorscheme desert256
+" colorscheme wombat
+colorscheme jellybeans
 
-" no case search by default (ic), unless capital letters used
-set ignorecase
-set smartcase
+" Toggle spelling with F6
+set spelllang=en_us
+nnoremap <F6> :setlocal spell! spell?<CR>
 
-" Highlight as you type
-set incsearch
-set hlsearch
-
-" Enable spelling
-set spell
-set spell spelllang=en_gb
-
-" Hide buffers instead of closing them. This fixes a 
-" highlighting disappearing issue when closing a buffer
-set hidden
-
-" Set OS specifics.
-if has("win32")
-    set guifont=Consolas:h12
-    " Adds windows default copy/paste keybindings (Ctrl-C, Ctrl-V,...)
-    source $VIMRUNTIME/mswin.vim
-    behave mswin
-else
-    set guifont=Inconsolata\ 12
-endif
+set guifont=Inconsolata\ 12
 
 " diff options
 set diffopt=vertical
 
-" Tabs
-set autoindent
-set expandtab
-set tabstop=4
-set shiftwidth=4
-
 " Instead of failing a command because of unsaved changes, raise a
 " dialogue asking if you wish to save changed files.
 set confirm
-
-" Use visual bell instead of beeping when doing something wrong
-"set visualbell
 
 " Set the command window height to 2 lines
 set cmdheight=2
@@ -107,21 +98,21 @@ set cmdheight=2
 " Find tags file recursively
 set tags=tags;
 
+" No preview window in completeopt
+set completeopt-=preview
+
 " ============
 " = Mappings =
 " ============
-
-" tab next/previous with keys
-"nnoremap <C-S-H>   :tabp<ENTER>
-"nnoremap <C-S-L>   :tabn<ENTER>
-"nnoremap <C-tab>   :tabn<ENTER>
-"nnoremap <C-S-tab> :tabp<ENTER>
 
 " Move windows with Ctrl + direction
 noremap <C-J> <C-W>j
 noremap <C-K> <C-W>k
 noremap <C-H> <C-W>h
 noremap <C-L> <C-W>l
+
+" Remove highlight when pressing ESC
+nnoremap <esc> :noh<CR><esc>
 
 " New Tab
 nnoremap :t :tabe 
@@ -135,7 +126,7 @@ vnoremap > >gv
 
 " Make space execute the 'q' macro.
 " Press qq to start recording, q to stop, then [space] to execute.
-noremap <Space> @q
+" noremap <Space> @q
 
 " Go to last edited position
 nnoremap <c-q> `.
@@ -173,43 +164,45 @@ command! PrettyXML call DoPrettyXML()
 " Omni Completion
 set omnifunc=syntaxcomplete#Complete
 
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
 " ===========
 " = Plugins =
 " ===========
 
-" GitGutter: Change sign column color, matching line number column
-highlight clear SignColumn
-
-" Regenerate Go tags file with gotags
-" Note: ctags-compatible tag generator for Go https://github.com/jstemmer/gotags
-" au BufWritePost *.go silent! !gotags -R . > tags &
-nnoremap <Leader>t :silent !gotags -R . > tags &<CR>
-
-let g:go_fmt_command = "goimports"
-
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-
+" ==================== syntastic ====================
 let g:syntastic_auto_loc_list = 2 " manual open. automatic close.
 nnoremap <Leader>e :Errors<CR>
 nnoremap <Leader>ne :lclose<CR>
 
-" Open the relevant Godoc for the word under the cursor with <leader>gd or open it vertically with <leader>gv
-au FileType go nmap <Leader>gd <Plug>(go-doc)
-au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+" Better integration with vim-go when saving and opening files
+let g:syntastic_go_checkers = ['go', 'golint', 'govet', 'errcheck']
+"let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+" let g:go_list_type = "quickfix"
 
-" MiniBufExpl
-nmap <F3> :MBEToggle<CR>
-noremap <C-TAB> :MBEbn<CR>
-noremap <C-S-TAB> :MBEbp<CR>
+" ==================== vim-go ====================
+let g:go_fmt_command = "goimports"
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
 
-" NerdTree
+au FileType go nmap <leader>g <Plug>(go-doc)   " Open the relevant Godoc for the word under the cursor
+au FileType go nmap <leader>r <Plug>(go-run)   " go run the current file
+au FileType go nmap <leader>b <Plug>(go-build) " go build the current file
+au FileType go nmap <leader>t <Plug>(go-test)  " go test the current file
+
+" ==================== airline ====================
+let g:airline#extensions#tabline#enabled = 1     " Enable the list of buffers
+let g:airline#extensions#tabline#fnamemod = ':t' " Show just the filename
+
+noremap <C-TAB> :bnext<CR>
+noremap <C-S-TAB> :bprevious<CR>
+
+" ==================== NerdTree ====================
 nmap <F4> :NERDTreeToggle<CR>
 
-" TagBar
+" ==================== TagBar ====================
 nmap <F5> :TagbarToggle<CR>
-
 
 let g:tagbar_type_go = {
     \ 'ctagstype' : 'go',
@@ -238,3 +231,12 @@ let g:tagbar_type_go = {
     \ 'ctagsbin'  : 'gotags',
     \ 'ctagsargs' : '-sort -silent'
 \ }
+
+" ==================== delimitMate ====================
+let g:delimitMate_expand_cr = 1		
+let g:delimitMate_expand_space = 1		
+let g:delimitMate_smart_quotes = 1		
+let g:delimitMate_expand_inside_quotes = 0		
+let g:delimitMate_smart_matchpairs = '^\%(\w\|\$\)'		
+
+imap <expr> <CR> pumvisible() ? "\<c-y>" : "<Plug>delimitMateCR"
