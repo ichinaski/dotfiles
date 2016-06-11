@@ -175,6 +175,8 @@ let g:syntastic_auto_loc_list = 2 " manual open. automatic close.
 nnoremap <Leader>e :Errors<CR>
 nnoremap <Leader>ne :lclose<CR>
 
+" Use godef for :GoDef
+let g:go_def_mode = "godef"
 " Better integration with vim-go when saving and opening files
 let g:syntastic_go_checkers = ['go', 'golint', 'govet', 'errcheck']
 "let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
