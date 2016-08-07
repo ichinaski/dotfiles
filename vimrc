@@ -64,9 +64,12 @@ autocmd Filetype javascript setlocal ts=4 sts=4 sw=4
 " Enable syntax highlighting
 syntax on
 
-" gvim. TODO: Move this to a separate .gvimrc config file
 if has("gui_running")
     set guioptions-=T
+    set guioptions-=l
+    set guioptions-=L
+    set guioptions-=r
+    set guioptions-=R
 
     " Set the window maximized by default
     set lines=999
@@ -197,8 +200,11 @@ au FileType go nmap <leader>t <Plug>(go-test)  " go test the current file
 let g:airline#extensions#tabline#enabled = 1     " Enable the list of buffers
 let g:airline#extensions#tabline#fnamemod = ':t' " Show just the filename
 
-noremap <C-TAB> :bnext<CR>
-noremap <C-S-TAB> :bprevious<CR>
+" Cycle through buffers
+nnoremap <C-n> :bnext<CR>
+nnoremap <C-p> :bprevious<CR>
+nnoremap <C-w> :bd<CR>
+
 
 " ==================== NerdTree ====================
 nmap <F4> :NERDTreeToggle<CR>
