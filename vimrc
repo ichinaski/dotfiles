@@ -8,12 +8,21 @@ Plug 'flazz/vim-colorschemes'
 Plug 'Raimondi/delimitMate'
 Plug 'scrooloose/syntastic'
 
+
+" Note: requires jedi to be installed
+" Plug 'davidhalter/jedi-vim'
+
+
 " Plug 'Shougo/neocomplete.vim'
 " Plug 'Shougo/vimproc' , { 'do': 'make'}
 
 " filetype plugins
 Plug 'elzr/vim-json', {'for' : 'json'}
 Plug 'ekalinin/Dockerfile.vim', {'for' : 'Dockerfile'}
+Plug 'pangloss/vim-javascript', {'for' : 'javascript'}
+"Plug 'mxw/vim-jsx', {'for' : 'javascript'}
+
+
 
 call plug#end()
 
@@ -41,8 +50,8 @@ set laststatus=2
 set hidden
 
 "http://stackoverflow.com/questions/20186975/vim-mac-how-to-copy-to-clipboard-without-pbcopy
-set clipboard^=unnamed
-set clipboard^=unnamedplus
+set clipboard+=unnamed
+set clipboard+=unnamedplus
 
 set noshowmatch                 " Do not show matching brackets by flickering
 set nocursorcolumn
@@ -56,10 +65,14 @@ set wildmenu                    " Better command-line completion
 let mapleader=","
 " set smartindent
 
+" No tabs, exacept otherwise noted
+set expandtab
+
 " File Type settings
 autocmd BufNewFile,BufRead *.go setlocal noet ts=4 sw=4 sts=4
 autocmd Filetype html setlocal ts=2 sts=2 sw=2
-autocmd Filetype javascript setlocal ts=4 sts=4 sw=4
+autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
+autocmd Filetype python setlocal ts=8 sts=4 sw=4
 
 " Enable syntax highlighting
 syntax on
@@ -75,6 +88,7 @@ if has("gui_running")
     set lines=999
     set columns=999
 
+    set guifont=Inconsolata\ 12
 endif
 
 " Color scheme
@@ -85,8 +99,6 @@ colorscheme jellybeans
 " Toggle spelling with F6
 set spelllang=en_us
 nnoremap <F6> :setlocal spell! spell?<CR>
-
-set guifont=Inconsolata\ 12
 
 " diff options
 set diffopt=vertical
@@ -181,9 +193,10 @@ nnoremap <Leader>ne :lclose<CR>
 " Use godef for :GoDef
 let g:go_def_mode = "godef"
 " Better integration with vim-go when saving and opening files
-let g:syntastic_go_checkers = ['go', 'golint', 'govet', 'errcheck']
+"let g:syntastic_go_checkers = ['go', 'golint', 'govet', 'errcheck']
+let g:syntastic_go_checkers = ['go', 'govet']
 "let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
-" let g:go_list_type = "quickfix"
+"let g:go_list_type = "quickfix"
 
 " ==================== vim-go ====================
 let g:go_fmt_command = "goimports"
@@ -209,8 +222,13 @@ nnoremap <C-w> :bd<CR>
 " ==================== NerdTree ====================
 nmap <F4> :NERDTreeToggle<CR>
 
+" ==================== vim-json ====================
+let g:vim_json_syntax_conceal = 0
+
 " ==================== TagBar ====================
 nmap <F5> :TagbarToggle<CR>
+
+let g:jsx_ext_required = 0
 
 let g:tagbar_type_go = {
     \ 'ctagstype' : 'go',
