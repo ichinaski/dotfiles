@@ -6,23 +6,13 @@ Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
 Plug 'flazz/vim-colorschemes'
 Plug 'Raimondi/delimitMate'
-Plug 'scrooloose/syntastic'
-
-
-" Note: requires jedi to be installed
-" Plug 'davidhalter/jedi-vim'
-
-
-" Plug 'Shougo/neocomplete.vim'
-" Plug 'Shougo/vimproc' , { 'do': 'make'}
+Plug 'w0rp/ale'
+"Plug 'scrooloose/syntastic'
 
 " filetype plugins
 Plug 'elzr/vim-json', {'for' : 'json'}
 Plug 'ekalinin/Dockerfile.vim', {'for' : 'Dockerfile'}
 Plug 'pangloss/vim-javascript', {'for' : 'javascript'}
-"Plug 'mxw/vim-jsx', {'for' : 'javascript'}
-
-
 
 call plug#end()
 
@@ -50,8 +40,10 @@ set laststatus=2
 set hidden
 
 "http://stackoverflow.com/questions/20186975/vim-mac-how-to-copy-to-clipboard-without-pbcopy
-set clipboard+=unnamed
-set clipboard+=unnamedplus
+if (&term != 'screen-256color') 
+    set clipboard+=unnamed
+    set clipboard+=unnamedplus
+endif
 
 set noshowmatch                 " Do not show matching brackets by flickering
 set nocursorcolumn
@@ -127,7 +119,7 @@ noremap <C-H> <C-W>h
 noremap <C-L> <C-W>l
 
 " Remove highlight when pressing ESC
-nnoremap <esc> :noh<CR><esc>
+"nnoremap <esc> :noh<CR><esc>
 
 " New Tab
 nnoremap :t :tabe 
@@ -193,10 +185,19 @@ nnoremap <Leader>ne :lclose<CR>
 " Use godef for :GoDef
 let g:go_def_mode = "godef"
 " Better integration with vim-go when saving and opening files
-"let g:syntastic_go_checkers = ['go', 'golint', 'govet', 'errcheck']
-let g:syntastic_go_checkers = ['go', 'govet']
-"let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
-"let g:go_list_type = "quickfix"
+" let g:syntastic_go_checkers = ['govet', 'errcheck']
+" let g:syntastic_go_checkers = ['golint', 'govet', 'gometalinter']
+" let g:syntastic_go_gometalinter_args = ['--disable-all', '--enable=errcheck']
+" let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+let g:go_list_type = "quickfix"
+
+let g:syntastic_python_checkers = ['flake8']
+
+" =================== ale ==========================
+let g:ale_linters = {
+\    'go': ['go build'],
+\    'python': ['flake8'],
+\}
 
 " ==================== vim-go ====================
 let g:go_fmt_command = "goimports"
@@ -265,4 +266,4 @@ let g:delimitMate_smart_quotes = 1
 let g:delimitMate_expand_inside_quotes = 0		
 let g:delimitMate_smart_matchpairs = '^\%(\w\|\$\)'		
 
-imap <expr> <CR> pumvisible() ? "\<c-y>" : "<Plug>delimitMateCR"
+"imap <expr> <CR> pumvisible() ? "\<c-y>" : "<Plug>delimitMateCR"
