@@ -43,8 +43,9 @@
   control+shift + q
 
 # set directly keycode (here control + f with my keyboard)
-"xterm"
-  c:41 + m:0x4
+# disable this shorcut. It clashes it vim's ctrl+f
+#"xterm"
+#  c:41 + m:0x4
 
 # specify a mouse button
 "xterm"
