@@ -1,11 +1,16 @@
-Xft.autohint: 0
-Xft.lcdfilter: lcddefault
-Xft.hintstyle: hintslight
-Xft.hinting: 1
-Xft.antialias: 1
+Xft.antialias: true
+Xft.hinting: true
 Xft.rgba: rgb
 
-*faceName: Inconsolata:size=12
+*scrollBar: false
+
+!*faceName: Inconsolata:size=12
+!*faceName: xos4 Terminus
+
+! Solarized dark theme: https://raw.githubusercontent.com/solarized/xresources/master/Xresources.dark
+
+!urxvt.letterSpace: 0
+urxvt*font: xft:Monaco:size=9
 
 #define S_base03        #002b36
 #define S_base02        #073642
@@ -63,9 +68,3 @@ Xft.rgba: rgb
 !! white dark/light
 *color7:                S_base2
 *color15:               S_base3
-
-XTerm.termName: xterm-256color
-XTerm.selectToClipboard: true
-XTerm.vt100.translations: #override \n\
-    Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
-    Ctrl Shift <Key>V: insert-selection(CLIPBOARD)

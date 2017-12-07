@@ -1,7 +1,7 @@
 # Environment-specific configuration
 
-set -x GOROOT /usr/local/go
-set -x GOPATH ~/projects/go
+#set -x GOROOT /usr/bin/go
+set -x GOPATH ~/go
 set -x X $GOPATH/src/github.com/opinary/x
 set -x GOOGLE_APPLICATION_CREDENTIALS ~/opinary-dev-4f4810d35a04.json 
 set -x DOCKER_ID_USER ichinaski
@@ -9,7 +9,7 @@ set -x DOCKER_ID_USER ichinaski
 # PATH
 set -xg PATH \
   $GOPATH/bin \
-  $GOROOT/bin \
+  #$GOROOT/bin \
   ~/bin \
   ~/google-cloud-sdk/bin \
   ~/bin/go_appengine \
@@ -21,5 +21,5 @@ set -xg PYTHONPATH \
   ~/opinary/automation:\
   ~/google-cloud-sdk/platform/google_appengine:\
 
-set -x VIRTUALFISH_HOME ~/Envs
+set -x VIRTUALFISH_HOME ~/.venvs
 eval (python -m virtualfish)

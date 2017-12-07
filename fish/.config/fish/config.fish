@@ -13,6 +13,7 @@ set -x PAGER less
 
 # Fish git prompt
 set __fish_git_prompt_show_informative_status 'yes'
+set -x fish_greeting ''
 
 # Aliases
 alias l='ls -lFh'
