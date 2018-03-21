@@ -1,4 +1,4 @@
 # Don't check in custom env vars by default
-env.fish
+fish/.config/fish/env.fish
 
 .DS_Store
