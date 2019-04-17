@@ -1,7 +1,0 @@
-#!/bin/bash
-
-gcloud="$(which gcloud)"
-[ -L "$gcloud" ] && gcloud="$(readlink "$gcloud")"  # works for regular and brew installs
-appdir="$(dirname "$(dirname "$gcloud")")"
-goapp="${appdir}/platform/google_appengine/goapp"
-python2 "$goapp" "$@"

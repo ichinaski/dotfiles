@@ -1,11 +1,11 @@
 # dotfiles
 
-Common configuration files for all my systems.
-
-I use [stow](http://www.gnu.org/software/stow) to configure symlinks.
+Configuration files for my systems
 
 ### Usage
 
         $ git clone https://github.com/ichinaski.dotfiles
-        $ cd dotfiles
-        $ stow vim fish # etc
+        $ ln -s -/dotfiles/.vimrc .vimrc
+        $ ln -s -/dotfiles/fish .config/fish
+        $ ln -s -/dotfiles/nvim .config/nvim
+        $ etc
