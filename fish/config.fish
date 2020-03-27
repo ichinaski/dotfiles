@@ -10,6 +10,7 @@ set -x LANG en_US.UTF-8
 set -x EDITOR nvim
 set -x VISUAL nvim
 set -x PAGER less
+set -x RBENV_SHELL fish
 
 # Fish git prompt
 set __fish_git_prompt_show_informative_status 'yes'
