@@ -33,6 +33,8 @@ alias vi nvim
 alias v nvim
 alias ddpr dd-pr
 alias k kubectl
+alias kg "kubectl get"
+alias kd "kubectl describe"
 alias pods "kubectl get pods"
 alias deployments "kubectl get deployments"
 alias ev "v ~/.vimrc"

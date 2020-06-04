@@ -14,6 +14,8 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'ruanyl/vim-gh-line'
+Plug 'psf/black', { 'branch': 'stable' }
 
 call plug#end()
 
@@ -196,6 +198,9 @@ let g:vim_json_syntax_conceal = 0
 " ==================== vim-javascript ====================
 let g:jsx_ext_required = 0
 
+" ==================== py-black ====================
+let g:black_linelength = 120
+
 " ==================== delimitMate ====================
 let g:delimitMate_expand_cr = 1		
 let g:delimitMate_expand_space = 1		
@@ -239,8 +244,8 @@ else
 endif
 
 " Use `[c` and `]c` to navigate diagnostics
-nmap <silent> [c <Plug>(coc-diagnostic-prev)
-nmap <silent> ]c <Plug>(coc-diagnostic-next)
+nmap <silent> <expr> [c &diff ? '[c' : '<Plug>(coc-diagnostic-prev)'
+nmap <silent> <expr> ]c &diff ? ']c' : '<Plug>(coc-diagnostic-next)'
 
 " GoTo code navigation
 nmap <silent> gd <Plug>(coc-definition)
