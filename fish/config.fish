@@ -76,6 +76,10 @@ function pprof
   go tool pprof -http=localhost:8083 http://localhost:6060/debug/pprof/$argv
 end
 
+function kexec
+  kubectl exec -it $argv -- /bin/bash
+end
+
 # Configuration for terraform dashboards
 function apm-monitoring-us1-staging-apply
   pushd "$DATADOG_ROOT/cloudops/datacenter/us1.staging.dog/apm-monitoring"
@@ -142,3 +146,5 @@ end
 function branch
  git checkout -b "ichinaski/"$argv
 end
+
+status --is-interactive; and source (pyenv init -|psub)
