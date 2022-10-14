@@ -42,6 +42,9 @@ alias v nvim
 alias ev "v ~/.vimrc"
 alias ef 'v ~/.config/fish/config.fish'
 alias ilog 'vim ~/gdrive/chinaski.log'
+alias fh 'fzf-history-widget'
+alias ff 'fzf-file-widget'
+alias fcd 'fzf-cd-widget'
 
 # Load custom env vars
 if test -e ~/.config/fish/env.fish
