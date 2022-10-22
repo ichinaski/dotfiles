@@ -13,7 +13,6 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'ruanyl/vim-gh-line'
-"Plug 'w0rp/ale'
 
 call plug#end()
 
@@ -121,16 +120,15 @@ inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 "====================== PLUGINS ======================
 "=====================================================
 
-" =================== ale ==========================
-let g:ale_linters = {'go': ['go build'], 'python': ['flake8'] }
-
 " ==================== vim-go ====================
 let g:go_fmt_fail_silently = 1
 let g:go_fmt_command = "goimports"
 let g:go_list_type = "quickfix"
 let g:go_test_show_name = 1
 let g:go_auto_sameids = 0
-"let g:go_auto_type_info = 1
+" let g:go_auto_type_info = 1
+" let g:go_debug = ['lsp'] ## Use this for gopls debug logs
+
 "
 let g:go_gopls_complete_unimported = 1
 let g:go_diagnostics_enabled = 1
@@ -144,11 +142,11 @@ let g:go_doc_popup_window = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_types = 1
 let g:go_highlight_operators = 1
-
-let g:go_addtags_transform = 'camelcase'
-
-nmap <C-g> :GoDecls<cr>
-imap <C-g> <esc>:<C-u>GoDecls<cr>
+" 
+" let g:go_addtags_transform = 'camelcase'
+" 
+" nmap <C-g> :GoDecls<cr>
+" imap <C-g> <esc>:<C-u>GoDecls<cr>
 
 au FileType go nmap <silent> <leader>b <Plug>(go-build) " go build the current file
 au FileType go nmap <silent> <leader>t <Plug>(go-test)  " go test the current file
@@ -188,6 +186,10 @@ let g:airline_section_b = ''
 " ==================== NerdTree ====================
 let NERDTreeShowHidden=1
 noremap <Leader>n :NERDTreeToggle<cr>
+
+" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 
 " ==================== vim-json ====================
 let g:vim_json_syntax_conceal = 0
