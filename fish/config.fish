@@ -65,7 +65,8 @@ set -x GOPRIVATE github.com/DataDog
 
 # https://datadoghq.atlassian.net/wiki/spaces/ROCKS/pages/2282914002/Go+Wrapper
 set -x PKG_CONFIG_PATH /opt/homebrew/opt/openssl@3/lib/pkgconfig
-set -x CGO_CPPFLAGS "-I/opt/homebrew/Cellar/rocksdb@6.20.3/6.20.3/include -I/opt/homebrew/opt/gperftools/include -DCMAKE_EXE_LINKER_FLAG"
+#set -x CGO_CPPFLAGS "-I/opt/homebrew/Cellar/rocksdb@6.20.3/6.20.3/include -I/opt/homebrew/opt/gperftools/include -DCMAKE_EXE_LINKER_FLAG"
+set -x CGO_CPPFLAGS "-I/opt/homebrew/Cellar/rocksdb@6.20.3/6.20.3/include -I/opt/homebrew/Cellar/foundationdb-headers@6.2.30/6.2.30/include -I/opt/homebrew/opt/gperftools/include -DCMAKE_EXE_LINKER_FLAG"
 set -x CGO_CXXFLAGS_ALLOW "-lpthread|-ltcmalloc"
 set -x CGO_CFLAGS_ALLOW "-ltcmalloc"
 
