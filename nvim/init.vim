@@ -146,4 +146,4 @@ nnoremap <leader>g <cmd>Telescope live_grep<cr>
 nnoremap <leader>m <cmd>Telescope marks<cr>
 nnoremap <leader>r <cmd>Telescope lsp_references<cr>
 nnoremap <leader>s <cmd>Telescope lsp_document_symbols<cr>
-nnoremap <C-g><cmd>lua require("telescope.builtin").lsp_document_symbols({ symbols = { "struct", "function" } })<cr>
+nnoremap <C-g> <cmd>lua require("telescope.builtin").lsp_document_symbols({ symbols = { "struct", "function" } })<cr>
