@@ -106,3 +106,6 @@ fish_vi_key_bindings
 
 # iterm2 shell intergration, needed for kubernetes contextual info on iterm2_print_user_vars
 test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
+
+alias av='aws-vault exec sandbox-account-admin --'
+alias avk='aws-vault exec sandbox-account-admin -- kubectl'

@@ -9,7 +9,7 @@ Plug 'ruanyl/vim-gh-line'
 
 " Color and syntax
 Plug 'EdenEast/nightfox.nvim'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 
 " LSP and completion
 Plug 'neovim/nvim-lspconfig'
@@ -20,12 +20,12 @@ Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
-Plug 'j-hui/fidget.nvim'
+Plug 'j-hui/fidget.nvim', { 'tag': 'legacy' }
 
 " Fuzzy finder
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' }
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
 " Go autoformatting
@@ -49,6 +49,8 @@ set noshowmode                  " Show the mode with airline
 set ignorecase                  " Search case insensitive...
 set smartcase                   " ... but not when search pattern contains upper case characters
 set expandtab                   " No tabs, exacept otherwise noted
+set tabstop=4
+set shiftwidth=4
 
 set completeopt=menu,menuone,noselect
 
