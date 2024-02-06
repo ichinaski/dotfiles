@@ -41,7 +41,7 @@ filetype plugin indent on
 set autoindent
 set number                      " Show line numbers 
 set noswapfile                  " Don't use swapfile
-set nobackup            	" Don't create annoying backup files
+set nobackup                    " Don't create annoying backup files
 set splitright                  " Split vertical windows right to the current windows
 set splitbelow                  " Split horizontal windows below to the current windows
 set laststatus=2
@@ -136,11 +136,11 @@ autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_
     \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 
 " ==================== delimitMate ====================
-let g:delimitMate_expand_cr = 1		
-let g:delimitMate_expand_space = 1		
-let g:delimitMate_smart_quotes = 1		
-let g:delimitMate_expand_inside_quotes = 0		
-let g:delimitMate_smart_matchpairs = '^\%(\w\|\$\)'		
+let g:delimitMate_expand_cr = 1
+let g:delimitMate_expand_space = 1
+let g:delimitMate_smart_quotes = 1
+let g:delimitMate_expand_inside_quotes = 0
+let g:delimitMate_smart_matchpairs = '^\%(\w\|\$\)'
 
 " ==================== Telescope ====================
 nnoremap <leader>e <cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>
