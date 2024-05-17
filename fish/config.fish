@@ -76,25 +76,30 @@ set -x fish_greeting ''
 
 # Aliases
 alias g git
-alias gp 'git pull '
-alias gs 'git status '
-alias ga 'git add '
-alias gb 'git branch '
-alias gc 'git commit'
-alias gd 'git diff'
-alias gco 'git checkout '
+alias gp "git push"
+alias gl "git pull"
+alias gs "git status"
+alias ga "git add"
+alias gaa 'git add --all'
+alias gb "git branch"
+alias gc "git commit"
+alias gcm "git commit -m"
+alias gd "git diff"
+alias gco "git checkout"
+alias gm "git merge"
+alias glg "git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 
-alias l 'ls -lFh'
-alias ll 'ls -alF'
+alias l "ls -lFh"
+alias ll "ls -alF"
 alias ddpr dd-pr
 alias k kubectl
 alias v nvim
-alias ev 'nvim ~/.config/nvim/init.vim'
-alias ef 'nvim ~/.config/fish/config.fish'
-alias ilog 'vim ~/gdrive/chinaski.log'
-alias fh 'fzf-history-widget'
-alias ff 'fzf-file-widget'
-alias fcd 'fzf-cd-widget'
+alias ev "nvim ~/.config/nvim/init.vim"
+alias ef "nvim ~/.config/fish/config.fish"
+alias ilog "vim ~/gdrive/chinaski.log"
+alias fh "fzf-history-widget"
+alias ff "fzf-file-widget"
+alias fcd "fzf-cd-widget"
 
 # Load custom env vars
 if test -e ~/.config/fish/env.fish
@@ -107,5 +112,5 @@ fish_vi_key_bindings
 # iterm2 shell intergration, needed for kubernetes contextual info on iterm2_print_user_vars
 test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
 
-alias av='aws-vault exec sandbox-account-admin --'
-alias avk='aws-vault exec sandbox-account-admin -- kubectl'
+alias av "aws-vault exec sandbox-account-admin --"
+alias avk "aws-vault exec sandbox-account-admin -- kubectl"
