@@ -5,6 +5,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'Raimondi/delimitMate'
 Plug 'vim-scripts/Visual-Mark'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
 Plug 'ruanyl/vim-gh-line'
 
 " Color and syntax
@@ -38,13 +39,11 @@ filetype plugin indent on
 "=====================================================
 "===================== SETTINGS ======================
 "=====================================================
-set autoindent
 set number                      " Show line numbers 
 set noswapfile                  " Don't use swapfile
 set nobackup                    " Don't create annoying backup files
 set splitright                  " Split vertical windows right to the current windows
 set splitbelow                  " Split horizontal windows below to the current windows
-set laststatus=2
 set noshowmode                  " Show the mode with airline
 set ignorecase                  " Search case insensitive...
 set smartcase                   " ... but not when search pattern contains upper case characters
@@ -57,7 +56,6 @@ set completeopt=menu,menuone,noselect
 set diffopt=vertical
 set cmdheight=2                 " Better display for messages
 set updatetime=300              " Smaller updatetime for CursorHold & CursorHoldI
-set shortmess+=c " don't give |ins-completion-menu| messages.
 
 "http://stackoverflow.com/questions/20186975/vim-mac-how-to-copy-to-clipboard-without-pbcopy
 set clipboard+=unnamed,unnamedplus
