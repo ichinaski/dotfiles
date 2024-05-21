@@ -74,37 +74,46 @@ set -x CGO_CFLAGS_ALLOW "-ltcmalloc"
 set __fish_git_prompt_show_informative_status 'yes'
 set -x fish_greeting ''
 
-# Aliases
-alias g git
-alias gp "git push"
-alias gl "git pull"
-alias gs "git status"
-alias ga "git add"
-alias gaa 'git add --all'
-alias gb "git branch"
-alias gc "git commit"
-alias gcm "git commit -m"
-alias gd "git diff"
-alias gco "git checkout"
-alias gm "git merge"
-alias glg "git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+# Abbreviations
 
+# recurrent dirs
+abbr --add tsme 'cd ~/dd/dd-go/trace/apps/trace-spans-meta-extractor'
+abbr --add tut 'cd ~/dd/dd-go/trace/apps/trace-usage-tracker'
+
+# commands
+abbr --add rgf 'rg --files | rg'
+abbr --add df 'df -H'
+
+# kubectl
+abbr --add pods 'kubectl get pods'
+abbr --add deployments 'kubectl get deployments'
+
+# git
+abbr --add g git
+abbr --add gp "git push"
+abbr --add gl "git pull"
+abbr --add gs "git status"
+abbr --add ga "git add"
+abbr --add gaa 'git add --all'
+abbr --add gb "git branch"
+abbr --add gc "git commit"
+abbr --add gcm "git commit -m"
+abbr --add gd "git diff"
+abbr --add gco "git checkout"
+abbr --add gm "git merge"
+abbr --add glg "git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 # Create git branch prefixed with github username
-function gbranch
- git checkout -b "ichinaski/"$argv
-end
+abbr --add gbranch --set-cursor 'git checkout -b "ichinaski/%s"'
 
-alias l "ls -lFh"
-alias ll "ls -alF"
-alias ddpr dd-pr
-alias k kubectl
-alias v nvim
-alias ev "nvim ~/.config/nvim/init.vim"
-alias ef "nvim ~/.config/fish/config.fish"
-alias ilog "vim ~/gdrive/chinaski.log"
-alias fh "fzf-history-widget"
-alias ff "fzf-file-widget"
-alias fcd "fzf-cd-widget"
+abbr --add ddpr dd-pr
+abbr --add k kubectl
+abbr --add v nvim
+abbr --add ev "nvim ~/.config/nvim/init.vim"
+abbr --add ef "nvim ~/.config/fish/config.fish"
+abbr --add ilog "vim ~/gdrive/chinaski.log"
+abbr --add fh "fzf-history-widget"
+abbr --add ff "fzf-file-widget"
+abbr --add fcd "fzf-cd-widget"
 
 # Load custom env vars
 if test -e ~/.config/fish/env.fish
