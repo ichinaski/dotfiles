@@ -75,20 +75,12 @@ set __fish_git_prompt_show_informative_status 'yes'
 set -x fish_greeting ''
 
 # Abbreviations
-
-# recurrent dirs
 abbr --add tsme 'cd ~/dd/dd-go/trace/apps/trace-spans-meta-extractor'
 abbr --add tut 'cd ~/dd/dd-go/trace/apps/trace-usage-tracker'
 
-# commands
 abbr --add rgf 'rg --files | rg'
 abbr --add df 'df -H'
 
-# kubectl
-abbr --add pods 'kubectl get pods'
-abbr --add deployments 'kubectl get deployments'
-
-# git
 abbr --add g git
 abbr --add gp "git push"
 abbr --add gl "git pull"
@@ -97,7 +89,7 @@ abbr --add ga "git add"
 abbr --add gaa 'git add --all'
 abbr --add gb "git branch"
 abbr --add gc "git commit"
-abbr --add gcm "git commit -m"
+abbr --add gcm --set-cursor "git commit -m '%'"
 abbr --add gd "git diff"
 abbr --add gco "git checkout"
 abbr --add gm "git merge"
@@ -106,11 +98,16 @@ abbr --add glg "git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yell
 abbr --add gbranch --set-cursor 'git checkout -b "ichinaski/%s"'
 
 abbr --add ddpr dd-pr
+
 abbr --add k kubectl
+abbr --add pods 'kubectl get pods'
+abbr --add deployments 'kubectl get deployments'
+
 abbr --add v nvim
 abbr --add ev "nvim ~/.config/nvim/init.vim"
 abbr --add ef "nvim ~/.config/fish/config.fish"
-abbr --add ilog "vim ~/gdrive/chinaski.log"
+abbr --add sf 'source ~/.config/fish/config.fish'
+
 abbr --add fh "fzf-history-widget"
 abbr --add ff "fzf-file-widget"
 abbr --add fcd "fzf-cd-widget"
