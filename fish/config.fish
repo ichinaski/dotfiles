@@ -89,6 +89,11 @@ alias gco "git checkout"
 alias gm "git merge"
 alias glg "git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 
+# Create git branch prefixed with github username
+function gbranch
+ git checkout -b "ichinaski/"$argv
+end
+
 alias l "ls -lFh"
 alias ll "ls -alF"
 alias ddpr dd-pr
@@ -104,6 +109,10 @@ alias fcd "fzf-cd-widget"
 # Load custom env vars
 if test -e ~/.config/fish/env.fish
     source ~/.config/fish/env.fish
+end
+
+if test -e "$HOME/.cargo/env.fish"
+    source "$HOME/.cargo/env.fish"
 end
 
 # Vim key bindings
