@@ -10,6 +10,7 @@ Plug 'ruanyl/vim-gh-line'
 
 " Color and syntax
 Plug 'EdenEast/nightfox.nvim'
+Plug 'shaunsingh/nord.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 
 " LSP and completion
@@ -60,8 +61,6 @@ set updatetime=300              " Smaller updatetime for CursorHold & CursorHold
 "http://stackoverflow.com/questions/20186975/vim-mac-how-to-copy-to-clipboard-without-pbcopy
 set clipboard+=unnamed,unnamedplus
 
-colorscheme nightfox
-
 " File Type settings
 autocmd FileType go setlocal noexpandtab tabstop=4 shiftwidth=4
 autocmd FileType yaml setlocal expandtab shiftwidth=2 tabstop=2
@@ -72,6 +71,12 @@ autocmd Filetype html setlocal expandtab shiftwidth=2 tabstop=2
 autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 autocmd Filetype lua setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 
+" colorscheme
+" colorscheme nightfox
+let g:nord_disable_background = v:true
+let g:nord_italic = v:false
+colorscheme nord
+
 "=====================================================
 "===================== MAPPINGS ======================
 "=====================================================
@@ -80,6 +85,10 @@ let mapleader=","
 " Cycle through buffers
 nnoremap <C-n> :bnext<CR>
 nnoremap <C-p> :bprevious<CR>
+" <C-W>d (and <C-W><C-D>) in Normal mode map to vim.diagnostic.open_float()
+" unmap these to not affect the :bd mapping below
+unmap <C-W>d
+unmap <C-W><C-D>
 nnoremap <C-w> :bd<CR>
 
 " Move windows with Ctrl + direction
@@ -115,15 +124,27 @@ nnoremap <Leader>vr :source ~/.config/nvim/init.vim<CR>
 "====================== PLUGINS ======================
 "=====================================================
 
-lua require('treesitter')
-lua require('lsp')
-lua require('completion')
+lua require('_treesitter')
+lua require('_lsp')
+lua require('_completion')
+lua require('_telescope')
 lua require('fidget').setup{}
 
 " ==================== airline ====================
 let g:airline#extensions#tabline#enabled = 1     " Enable the list of buffers
 let g:airline#extensions#tabline#fnamemod = ':t' " Show just the filename
+let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline_section_b = ''
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+nmap <leader>1 <Plug>AirlineSelectTab1
+nmap <leader>2 <Plug>AirlineSelectTab2
+nmap <leader>3 <Plug>AirlineSelectTab3
+nmap <leader>4 <Plug>AirlineSelectTab4
+nmap <leader>5 <Plug>AirlineSelectTab5
+nmap <leader>6 <Plug>AirlineSelectTab6
+nmap <leader>7 <Plug>AirlineSelectTab7
+nmap <leader>8 <Plug>AirlineSelectTab8
+nmap <leader>9 <Plug>AirlineSelectTab9
 
 " ==================== NerdTree ====================
 let NERDTreeShowHidden=1
@@ -146,4 +167,6 @@ nnoremap <leader>g <cmd>Telescope live_grep<cr>
 nnoremap <leader>m <cmd>Telescope marks<cr>
 nnoremap <leader>r <cmd>Telescope lsp_references<cr>
 nnoremap <leader>s <cmd>Telescope lsp_document_symbols<cr>
+nnoremap <leader>b <cmd>Telescope buffers<cr>
+nnoremap <leader>o <cmd>Telescope oldfiles<cr>
 nnoremap <C-g> <cmd>lua require("telescope.builtin").lsp_document_symbols({ symbols = { "struct", "function" } })<cr>
