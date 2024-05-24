@@ -93,9 +93,9 @@ abbr --add gcm --set-cursor "git commit -m '%'"
 abbr --add gd "git diff"
 abbr --add gco "git checkout"
 abbr --add gm "git merge"
-abbr --add glg "git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+abbr --add glg "git log"
 # Create git branch prefixed with github username
-abbr --add gbranch --set-cursor 'git checkout -b "ichinaski/%s"'
+abbr --add gcb --set-cursor 'git checkout -b "ichinaski/%"'
 
 abbr --add ddpr dd-pr
 

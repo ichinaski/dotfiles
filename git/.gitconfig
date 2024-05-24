@@ -1,0 +1,23 @@
+[core]
+    hooksPath = /usr/local/dd/global_hooks
+[url "git@github.com:"]
+    insteadOf = https://github.com/
+[user]
+    name = Iñigo Lopez de Heredia
+[credential]
+    helper = osxkeychain
+[alias]
+    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+[mergetool]
+    keepBackup = false
+    prompt = false
+[fetch]
+    prune = true
+[pull]
+    ff = only
+[push]
+    default = current
+[core]
+    hooksPath = /usr/local/dd/global_hooks
+[merge]
+    tool = nvimdiff
