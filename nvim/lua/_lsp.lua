@@ -43,4 +43,10 @@ require('lspconfig')['pyright'].setup{
 require('lspconfig')['gopls'].setup{
   on_attach = on_attach,
   capabilities = capabilities,
+  --cmd = {"gopls", "-rpc.trace", "-logfile", "gopls.log"},
+  settings = {
+    gopls = {
+        buildFlags =  {"-tags=test"}
+    }
+  }
 }

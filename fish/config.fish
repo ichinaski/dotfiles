@@ -20,6 +20,9 @@ set -x HOMEBREW_CASK_OPTS --require-sha
 set -x HOMEBREW_DIR /opt/homebrew
 set -x HOMEBREW_BIN /opt/homebrew/bin
 
+# Disable virtualenv prompt. Everything is handled in fish_prompt function
+set -x VIRTUAL_ENV_DISABLE_PROMPT true
+
 # Load python shims
 status --is-interactive; and pyenv init - fish | source 
 
@@ -77,6 +80,7 @@ set -x fish_greeting ''
 # Abbreviations
 abbr --add tsme 'cd ~/dd/dd-go/trace/apps/trace-spans-meta-extractor'
 abbr --add tut 'cd ~/dd/dd-go/trace/apps/trace-usage-tracker'
+abbr --add cdagent 'cd ~/dd/datadog-agent'
 
 abbr --add rgf 'rg --files | rg'
 abbr --add df 'df -H'
