@@ -46,7 +46,7 @@ require('lspconfig')['gopls'].setup{
   --cmd = {"gopls", "-rpc.trace", "-logfile", "gopls.log"},
   settings = {
     gopls = {
-        buildFlags =  {"-tags=test"}
+        buildFlags =  {"-tags=test zlib zstd"}
     }
   }
 }

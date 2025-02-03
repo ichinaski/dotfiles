@@ -3,16 +3,14 @@ call plug#begin('~/.vim/plugged')
 Plug 'fatih/vim-go'
 Plug 'bling/vim-airline'
 Plug 'scrooloose/nerdtree'
-Plug 'flazz/vim-colorschemes'
 Plug 'Raimondi/delimitMate'
-Plug 'elzr/vim-json', {'for' : 'json'}
-Plug 'ekalinin/Dockerfile.vim', {'for' : 'Dockerfile'}
-Plug 'pangloss/vim-javascript', {'for' : 'javascript'}
 Plug 'vim-scripts/Visual-Mark'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
 Plug 'ruanyl/vim-gh-line'
+Plug 'nordtheme/vim'
 
 call plug#end()
 
@@ -23,11 +21,10 @@ filetype plugin indent on     " required
 "=====================================================
 "===================== SETTINGS ======================
 "=====================================================
-set noerrorbells                " No beeps
+set belloff=all
 set autoindent
 set number                      " Show line numbers 
 set backspace=indent,eol,start  " Makes backspace key more powerful.
-set showcmd                     " Show me what I'm typing
 set noswapfile                  " Don't use swapfile
 set nobackup            	" Don't create annoying backup files
 set splitright                  " Split vertical windows right to the current windows
@@ -38,7 +35,6 @@ set autoread                    " Automatically reread changed files without ask
 set laststatus=2
 set hidden
 set noshowmatch                 " Do not show matching brackets by flickering
-set nocursorcolumn
 set noshowmode                  " We show the mode with airline or lightline
 set incsearch                   " Shows the match while typing
 set hlsearch                    " Highlight found searches
@@ -50,7 +46,7 @@ set completeopt=longest,menuone " don't preselect, always a menu even with singl
 set diffopt=vertical
 set cmdheight=2                 " Better display for messages
 set updatetime=300              " Smaller updatetime for CursorHold & CursorHoldI
-set shortmess+=c " don't give |ins-completion-menu| messages.
+set shortmess+=c                " don't give |ins-completion-menu| messages.
 
 "http://stackoverflow.com/questions/20186975/vim-mac-how-to-copy-to-clipboard-without-pbcopy
 set clipboard+=unnamed,unnamedplus
@@ -66,7 +62,8 @@ autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 
 " Color
 syntax enable
-colorscheme jellybeans
+set termguicolors
+colorscheme nord
 
 "=====================================================
 "===================== MAPPINGS ======================
@@ -87,9 +84,6 @@ noremap <C-L> <C-W>l
 " Remove highlight when pressing (double) ESC
 nnoremap <esc><esc> :noh<CR><esc>
 
-" New Tab
-nnoremap :t :tabe 
-
 " Make Y behave like other capitals
 nnoremap Y y$
 
@@ -98,16 +92,6 @@ vnoremap < <gv
 vnoremap > >gv
 
 nnoremap <Leader>ss :setlocal spell! spell?<CR>
-
-" Make space execute the 'q' macro. Press qq to start recording, q to stop, then [space] to execute.
-" noremap <Space> @q
-
-" Common typo
-nnoremap :Q :q
-
-" Edit and reload .vimrc
-nnoremap <Leader>ve :vsplit ~/.vimrc<CR>
-nnoremap <Leader>vr :source ~/.vimrc<CR>
 
 " Autocompletion. Triggered with ctrl-space. Enable cycling with TAB
 inoremap <C-Space> <C-x><C-o>
@@ -122,41 +106,50 @@ inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 
 " ==================== vim-go ====================
 let g:go_fmt_fail_silently = 1
-let g:go_fmt_command = "goimports"
-let g:go_list_type = "quickfix"
-let g:go_test_show_name = 1
-let g:go_auto_sameids = 0
-" let g:go_auto_type_info = 1
-" let g:go_debug = ['lsp'] ## Use this for gopls debug logs
+let g:go_debug_windows = {
+      \ 'vars':  'leftabove 35vnew',
+      \ 'stack': 'botright 10new',
+\ }
 
-"
-let g:go_gopls_complete_unimported = 1
-let g:go_diagnostics_enabled = 1
+let g:go_test_show_name = 1
+let g:go_list_type = "quickfix"
 
 let g:go_autodetect_gopath = 1
-let g:go_metalinter_autosave_enabled = ['vet', 'golint']
-let g:go_metalinter_enabled = ['vet', 'golint']
 
+let g:go_gopls_complete_unimported = 1
+let g:go_gopls_gofumpt = 1
+
+" 2 is for errors and warnings
+let g:go_diagnostics_level = 2 
 let g:go_doc_popup_window = 1
+let g:go_doc_balloon = 1
 
-let g:go_highlight_functions = 1
-let g:go_highlight_types = 1
+let g:go_imports_mode="gopls"
+let g:go_imports_autosave=1
+
+let g:go_highlight_build_constraints = 1
 let g:go_highlight_operators = 1
-" 
-" let g:go_addtags_transform = 'camelcase'
-" 
-" nmap <C-g> :GoDecls<cr>
-" imap <C-g> <esc>:<C-u>GoDecls<cr>
 
-au FileType go nmap <silent> <leader>b <Plug>(go-build) " go build the current file
-au FileType go nmap <silent> <leader>t <Plug>(go-test)  " go test the current file
-au FileType go nmap <silent> <Leader>i <Plug>(go-info)
-au FileType go nmap <silent> <Leader>l <Plug>(go-metalinter)
-au FileType go nmap <silent> <Leader>d <Plug>(go-diagnostics)
-au FileType go nmap <silent> <leader>r <Plug>(go-referrers)    " Find references to the current symbol
-au FileType go nmap <silent> <leader>g <Plug>(go-doc)          " Open the relevant Godoc for the word under the cursor
-au FileType go nmap <silent> <Leader>v <Plug>(go-def-vertical) " go-def, vertival split pane
-au FileType go nmap <silent> <Leader>s <Plug>(go-def-split)    " go-def, horizontal split pane
+let g:go_fold_enable = []
+
+nmap <C-g> :GoDecls<cr>
+imap <C-g> <esc>:<C-u>GoDecls<cr>
+
+augroup go
+  autocmd!
+
+  autocmd FileType go nmap <silent> <Leader>v <Plug>(go-def-vertical)
+  autocmd FileType go nmap <silent> <Leader>s <Plug>(go-def-split)
+  autocmd FileType go nmap <silent> <Leader>d <Plug>(go-def-tab)
+
+  autocmd FileType go nmap <silent> <Leader>i <Plug>(go-doc)
+  autocmd FileType go nmap <silent> <Leader>r <Plug>(go-referrers)
+  autocmd FileType go nmap <silent> <Leader>d <Plug>(go-diagnostics)
+
+  autocmd FileType go nmap <silent> <leader>b <Plug>(go-build)
+  autocmd FileType go nmap <silent> <leader>t <Plug>(go-test)
+  autocmd FileType go nmap <silent> <Leader>c <Plug>(go-coverage-toggle)
+augroup END
 
 " ==================== FZF ====================
 let g:fzf_command_prefix = 'Fzf'
@@ -190,12 +183,6 @@ noremap <Leader>n :NERDTreeToggle<cr>
 " If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
 autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
     \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
-
-" ==================== vim-json ====================
-let g:vim_json_syntax_conceal = 0
-
-" ==================== vim-javascript ====================
-let g:jsx_ext_required = 0
 
 " ==================== delimitMate ====================
 let g:delimitMate_expand_cr = 1		

@@ -1,4 +1,4 @@
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.nvim/plugged')
 
 Plug 'bling/vim-airline'
 Plug 'scrooloose/nerdtree'
@@ -9,7 +9,6 @@ Plug 'tpope/vim-surround'
 Plug 'ruanyl/vim-gh-line'
 
 " Color and syntax
-Plug 'EdenEast/nightfox.nvim'
 Plug 'shaunsingh/nord.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 
@@ -22,7 +21,7 @@ Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
-Plug 'j-hui/fidget.nvim', { 'tag': 'legacy' }
+Plug 'j-hui/fidget.nvim'
 
 " Fuzzy finder
 Plug 'nvim-lua/popup.nvim'
@@ -109,16 +108,9 @@ vnoremap > >gv
 
 nnoremap <Leader>ss :setlocal spell! spell?<CR>
 
-" Make space execute the 'q' macro. Press qq to start recording, q to stop, then [space] to execute.
-" noremap <Space> @q
-
 " Common typos
 nnoremap :Q :q
 nnoremap :W :w
-
-" Edit and reload .vimrc
-nnoremap <Leader>ve :vsplit ~/.config/nvim/init.vim<CR>
-nnoremap <Leader>vr :source ~/.config/nvim/init.vim<CR>
 
 "=====================================================
 "====================== PLUGINS ======================

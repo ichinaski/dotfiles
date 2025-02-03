@@ -44,6 +44,9 @@ set -x GOPATH $HOME/go
 # Add binaries that are go install-ed to PATH
 set -x PATH $GOPATH/bin $PATH
 
+# Add keww binaries to path: https://krew.sigs.k8s.io
+set -x PATH $PATH $HOME/.krew/bin
+
 # Point DATADOG_ROOT to ~/dd symlink
 set -x DATADOG_ROOT $HOME/dd
 
@@ -125,6 +128,10 @@ if test -e "$HOME/.cargo/env.fish"
     source "$HOME/.cargo/env.fish"
 end
 
+# Add google-cloud-sdk components to path
+source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.fish.inc"
+set -x USE_GKE_GCLOUD_AUTH_PLUGIN True
+
 # Vim key bindings
 fish_vi_key_bindings
 
@@ -133,3 +140,7 @@ test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shel
 
 alias av "aws-vault exec sandbox-account-admin --"
 alias avk "aws-vault exec sandbox-account-admin -- kubectl"
+
+# benchmarking-platform bp-runner: https://github.com/DataDog/benchmarking-platform-tools/blob/main/bp-runner/INSTALL.md
+set -x BP_RUNNER_HOME "/Users/inigo/dd/benchmarking-platform-tools/bp-runner"
+set -x PATH $BP_RUNNER_HOME $PATH
