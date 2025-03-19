@@ -1,23 +1,54 @@
+[column]
+    ui = auto
+[branch]
+    sort = -committerdate
+[tag]
+    sort = version:refname
+[init]
+    defaultBranch = main
+[diff]
+    algorithm = histogram
+    colorMoved = plain
+    mnemonicPrefix = true
+    renames = true
+[mergetool]
+    keepBackup = false
+    prompt = false
+[merge]
+    tool = nvimdiff
+[push]
+    default = simple
+    autoSetupRemote = true
+    followTags = true
+[pull]
+    ff = only
+[fetch]
+    prune = true
+    pruneTags = true
+    all = true
+[help]
+    autocorrect = prompt
+[commit]
+    verbose = true
+[rerere]
+    enabled = true
+    autoupdate = true
 [core]
+    excludesfile = ~/.gitignore
     hooksPath = /usr/local/dd/global_hooks
+[rebase]
+    autoSquash = true
+    autoStash = true
+    updateRefs = true
 [url "git@github.com:"]
     insteadOf = https://github.com/
 [user]
+    email = inigo.lopezdeheredia@datadoghq.com
     name = Iñigo Lopez de Heredia
 [credential]
     helper = osxkeychain
 [alias]
     lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-[mergetool]
-    keepBackup = false
-    prompt = false
-[fetch]
-    prune = true
-[pull]
-    ff = only
-[push]
-    default = current
-[core]
-    hooksPath = /usr/local/dd/global_hooks
-[merge]
-    tool = nvimdiff
+[safe]
+	directory = /Users/inigo/tmp/.git
+	directory = /Users/inigo/dd/dd-trace-go/.git
