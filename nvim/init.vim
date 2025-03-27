@@ -12,19 +12,10 @@ Plug 'ruanyl/vim-gh-line'
 Plug 'shaunsingh/nord.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 
-" LSP and completion
-Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-path'
-Plug 'hrsh7th/cmp-cmdline'
-Plug 'hrsh7th/nvim-cmp'
-Plug 'hrsh7th/cmp-vsnip'
-Plug 'hrsh7th/vim-vsnip'
+" LSP
 Plug 'j-hui/fidget.nvim'
 
 " Fuzzy finder
-Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' }
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
@@ -36,9 +27,7 @@ call plug#end()
 
 filetype plugin indent on
 
-"=====================================================
 "===================== SETTINGS ======================
-"=====================================================
 set number                      " Show line numbers 
 set noswapfile                  " Don't use swapfile
 set nobackup                    " Don't create annoying backup files
@@ -71,14 +60,11 @@ autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 autocmd Filetype lua setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 
 " colorscheme
-" colorscheme nightfox
 let g:nord_disable_background = v:true
 let g:nord_italic = v:false
 colorscheme nord
 
-"=====================================================
 "===================== MAPPINGS ======================
-"=====================================================
 let mapleader=","
 
 " Cycle through buffers
@@ -112,13 +98,10 @@ nnoremap <Leader>ss :setlocal spell! spell?<CR>
 nnoremap :Q :q
 nnoremap :W :w
 
-"=====================================================
 "====================== PLUGINS ======================
-"=====================================================
 
 lua require('_treesitter')
 lua require('_lsp')
-lua require('_completion')
 lua require('_telescope')
 lua require('fidget').setup{}
 
