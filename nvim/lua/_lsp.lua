@@ -12,10 +12,8 @@ vim.lsp.config.gopls = {
 
 vim.lsp.enable({'gopls'})
 
-
 -- Completion
 -- Use CTRL-space to trigger LSP completion.
--- Use CTRL-Y to select an item. |complete_CTRL-Y|
 vim.keymap.set('i', '<c-space>', function()
   vim.lsp.completion.get()
 end)
@@ -37,7 +35,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', 'gf', function() vim.lsp.buf.format { async = true } end, bufopts)
   end,
 })
-
 
 -- Diagnostics
 function toggle_diagnostics()

@@ -40,7 +40,7 @@ set expandtab                   " No tabs, exacept otherwise noted
 set tabstop=4
 set shiftwidth=4
 
-set completeopt=menu,menuone,noselect
+set completeopt=menu,menuone,noselect,popup
 
 set diffopt=vertical
 set cmdheight=2                 " Better display for messages
@@ -100,8 +100,8 @@ nnoremap :W :w
 
 "====================== PLUGINS ======================
 
-lua require('_treesitter')
 lua require('_lsp')
+lua require('_treesitter')
 lua require('_telescope')
 lua require('fidget').setup{}
 
