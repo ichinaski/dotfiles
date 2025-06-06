@@ -25,11 +25,12 @@
 [fetch]
     prune = true
     pruneTags = true
-    all = true
+    #all = true
 [help]
     autocorrect = prompt
 [commit]
     verbose = true
+    gpgsign = true
 [rerere]
     enabled = true
     autoupdate = true
@@ -45,10 +46,24 @@
 [user]
     email = inigo.lopezdeheredia@datadoghq.com
     name = Iñigo Lopez de Heredia
+    signingkey = /Users/inigo/.ssh/id_ed25519.pub
 [credential]
     helper = osxkeychain
 [alias]
     lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 [safe]
-	directory = /Users/inigo/tmp/.git
-	directory = /Users/inigo/dd/dd-trace-go/.git
+    directory = /Users/inigo/tmp/.git
+    directory = /Users/inigo/dd/dd-trace-go/.git
+    directory = /Users/inigo/dd/dd-trace-go/.git
+    directory = /Users/inigo/dd/dd-trace-go/.git
+    directory = /Users/inigo/dd/dd-trace-go/.git
+    directory = /Users/inigo/dd/dd-trace-go/.git
+    directory = /Users/inigo/dd/dd-trace-go/.git
+    directory = /Users/inigo/dd/dd-trace-go/.git
+    directory = /Users/inigo/dd/dd-trace-go/.git
+    directory = /Users/inigo/go/src/github.com/DataDog/dd-trace-go/.git
+    directory = /Users/inigo/go/src/github.com/DataDog/dd-trace-go/.git
+    directory = /Users/inigo/go/src/github.com/DataDog/dd-trace-go/.git
+    directory = /Users/inigo/go/src/github.com/DataDog/dd-trace-go/.git
+[gpg]
+    format = ssh
