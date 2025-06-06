@@ -3,14 +3,38 @@ vim.lsp.config.gopls = {
   cmd = { 'gopls' },
   settings = {
     gopls = {
-        buildFlags =  {"-tags=test zlib zstd"}
+      buildFlags =  {"-tags=test zlib zstd"}
     }
   },
   root_markers = { 'go.mod', '.git' },
   filetypes = { 'go' },
 }
 
-vim.lsp.enable({'gopls'})
+vim.lsp.config.python = {
+  cmd = { "pyright-langserver", "--stdio" },
+  filetypes = { "python" },
+  root_markers = {
+    "pyproject.toml",
+    "setup.py",
+    "setup.cfg",
+    "requirements.txt",
+    "Pipfile",
+    "pyrightconfig.json",
+    ".git",
+  },
+  settings = {
+    python = {
+      analysis = {
+        autoSearchPaths = true,
+        diagnosticMode = "openFilesOnly",
+        useLibraryCodeForTypes = true
+      }
+    }
+  }
+}
+
+vim.lsp.enable("gopls")
+vim.lsp.enable("python")
 
 -- Completion
 -- Use CTRL-space to trigger LSP completion.
@@ -33,6 +57,14 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', 'grn', vim.lsp.buf.rename) -- default
     vim.keymap.set('n', 'gca', vim.lsp.buf.code_action) -- default
     vim.keymap.set('n', 'gf', function() vim.lsp.buf.format { async = true } end, bufopts)
+
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      pattern = "*.go",
+      callback = function()
+        -- vim.lsp.buf.format {async = false, id = ev.data.client_id }
+        vim.lsp.buf.format {async = false }
+      end,
+    })
   end,
 })
 
